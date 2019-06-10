@@ -1,18 +1,22 @@
+"""Posts models."""
+# Django 
 from django.db import models
-"""Posts Models"""
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    """User Model"""
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=100)
+# Models
+from apps.users.models import Profile
 
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+class Post(models.Model):
+    """Post model."""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    is_admin = models.BooleanField(default=False)
+    title = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to='post/photos')
 
-    bio = models.TextField(blank=True)
-    birthdate = models.DateField(blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        """Return title an username."""
+        return '{} by @{}'.format(self.title, self.user.username)

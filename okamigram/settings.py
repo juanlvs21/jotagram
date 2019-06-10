@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'apps.posts',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -78,17 +79,17 @@ WSGI_APPLICATION = 'okamigram.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'okamigram',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': '127.0.0.1',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'okamigram',
+        'USER': 'admin',
+        'PASSWORD': '25108239',
+        'HOST': '127.0.0.1',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
 }
 
 # Password validation
@@ -133,3 +134,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     'static',
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
