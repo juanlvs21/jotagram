@@ -1,0 +1,40 @@
+<!-- Extending the base template -->
+{% extends "users/base.html" %}
+<!-- Title -->
+{% block title %}Signup{% endblock %}
+<!-- Content -->
+{% block content %}
+<div>
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+            <label for="firts_name">First Name</label>
+            <input type="text" class="form-control" id="firts_name" name="firts_name" placeholder="Enter First Name">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Signup</button>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'login' %}">Do you already have an account? Log in</a>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-danger mt-3 text-center" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

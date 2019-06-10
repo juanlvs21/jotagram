@@ -1,0 +1,26 @@
+<!-- Extending the base template -->
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Posts{% endblock %}
+<!-- Content -->
+{% block content %}
+<div>
+    {% for post in posts %}
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-md-5">
+            <div class="media">
+                <img src="{{post.user.picture}}" alt="{{post.user.name}}" class="mr-3 rounded-circle">
+                <div class="media-body">
+                    <h5 class="mt-0">{{post.user.name}}</h5>
+                    {{post.timestamp}}
+                </div>
+            </div>
+            <div class="text-center">
+                <img src="{{post.photo}}" alt="{{post.title}}" class="img-fluid mt-3 border rounded">
+                <h6 class="ml-1 mt-1">{{post.title}}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

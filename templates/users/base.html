@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Okamigram - {% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+
+    <!-- My Style -->
+    <style>
+        body {
+            background: #fbfbfb;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row justify-content-md-center d-flex align-items-center" id="row-content">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+                        <!-- <img src="{% static 'img/logo150px.png' %}" class="img-fluid rounded mx-auto d-block pb-4" style="max-width: 40%" alt=""> -->
+                        <img src="{% static 'img/logo-ig.png' %}" class="img-fluid rounded mx-auto d-block pb-4" style="max-width: 40%" alt="">
+                    </div>
+                    <!-- Content -->
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Import Javascript -->
+    <script src="{% static 'jquery/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <!-- My Script -->
+    <script>
+        let content = document.getElementById('row-content')
+        let height = window.innerHeight
+
+        content.style.height = `${height}px`
+    </script>
+</body>
+
+</html>
