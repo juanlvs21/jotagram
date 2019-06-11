@@ -13,13 +13,19 @@
             <div class="col">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                    <input type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}" id="username" name="username" placeholder="Enter Username" value="{% if form.errors %}{{ form.username.value }}{% endif %}" required>
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email Address" required>
+                    <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="email" name="email" placeholder="Enter Email Address" value="{% if form.errors %}{{ form.email.value }}{% endif %}" required>
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,13 +33,19 @@
             <div class="col">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name" required>
+                    <input type="text" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" id="first_name" name="first_name" placeholder="Enter First Name" value="{% if form.errors %}{{ form.first_name.value }}{% endif %}" required>
+                    <div class="invalid-feedback">
+                        {% for error in form.first_name.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="last_name">Last Name</label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                    <input type="text" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" id="last_name" name="last_name" placeholder="Enter Last Name" value="{% if form.errors %}{{ form.last_name.value }}{% endif %}" required>
+                    <div class="invalid-feedback">
+                        {% for error in form.last_name.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,13 +53,20 @@
             <div class="col">
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" id="password" name="password" placeholder="Password" value="{% if form.errors %}{{ form.password.value }}{% endif %}" required>
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="password_confirmation">Password Confirmation</label>
-                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" required>
+                    <input type="password" class="form-control {% if form.password_confirmation.errors %}is-invalid{% endif %}" id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" value="{% if form.errors %}{{ form.password_confirmation.value }}{% endif %}"
+                        required>
+                    <div class="invalid-feedback">
+                        {% for error in form.password_confirmation.errors %} {{ error }} {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
