@@ -52,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Local Middleware
+    #'jotagram.middleware.ProfileComletionMiddleware', # Personally I don't want to use this middleware
 ]
 
 ROOT_URLCONF = 'jotagram.urls'

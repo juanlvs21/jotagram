@@ -5,14 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Okamigram - {% block title %}{% endblock %}</title>
+    <title>Jotagram | {% block title %}{% endblock %}</title>
     {% load static %}
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
     <!-- My Style -->
     <style>
         nav {
-            height: 55px;
+            height: 50px;
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        }
+        
+        .padding5550 {
+            padding: 5px 5px 0px 5px;
+        }
+        
+        .nav-title-mobile {
+            display: none;
+        }
+        
+        .avatarRedondo-container {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .avatarRedondo {
+            /* Aquí establecemos el tamaño del avatar, puedes poner los valores que quieras */
+            height: 50px;
+            width: 50px;
+            /* Éstos valores no los tienes que cambiar ya que son en base a proporción */
+            background-repeat: no-repeat;
+            /*Para que la imagen no se repita */
+            background-position: 50%;
+            /*Centrar la imagen en el contenedor*/
+            border-radius: 50%;
+            /*Hace el efecto de redondear el contenedor*/
+            background-size: cover;
+            /*Hace que la imagen ocupe todo el contenedor*/
+        }
+        
+        .avatarRedondo-nav {
+            height: 23px!important;
+            width: 23px!important;
+        }
+        
+        .card-header {
+            padding: 10px 0px 0px 0px;
+        }
+        /* Media queries */
+        
+        .input-file {
+            padding-bottom: 32px;
+        }
+        
+        @media (max-width: 991px) {
+            .nav-title-mobile {
+                display: inline-block;
+                padding-left: 5px;
+            }
+            nav {
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -20,29 +75,39 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
-            <a href="/">
-                <!-- <img src="{% static 'img/logo150px.png' %}" alt="Okamigram" height="40px"> -->
-                <img src="{% static 'img/logo-ig.png' %}" alt="Okamigram" height="40px">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Okamigram" height="20px">
+                <h5 class="nav-title-mobile">Jotagram</h5>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav" style="padding-left:20px;">
                 <ul class="navbar-nav text-black ml-auto">
-                    <li class="nav-item" style="margin-right: 10px">
-                        <!-- <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a> -->
-                        <a href="">
-                            <img src="{% static 'img/perfil.png' %}" class="d-inline-block align-top" height="30" alt="" style="margin-top: 5px">
+                    <li class="nav-item padding5550">
+                        <a href="{% url 'update_profile' %}" data-toggle="tooltip" data-placement="bottom" title="Perfil">
+                            {% if request.user.profile.picture %}
+                                <div class="avatarRedondo avatarRedondo-nav " style="background-image:url('{{ request.user.profile.picture.url }}')"></div>
+                            {% endif %}
+                            <span class="nav-title-mobile">Perfil</span>
                         </a>
                     </li>
-                    <li class="nav-item" style="padding-top: 5px">
-                        <a href="">
-                            <i class="fa fa-plus fa-2x"></i>
+                    <li class="nav-item padding5550">
+                        <a href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home">
+                            <i class="fa fa-home" style="font-size: 22px"></i>
+                            <span class="nav-title-mobile">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item" style="padding-top: 5px; padding-left: 10px">
-                        <a href="{% url 'logout' %}" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-                            <i class="fa fa-sign-out-alt fa-2x"></i>
+                    <li class="nav-item padding5550">
+                        <a href="{% url 'create_post' %}" data-toggle="tooltip" data-placement="bottom" title="Add Post">
+                            <i class="fa fa-plus" style="font-size: 22px"></i>
+                            <span class="nav-title-mobile">Add Post</span>
+                        </a>
+                    </li>
+                    <li class="nav-item padding5550">
+                        <a href="{% url 'logout' %}" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                            <i class="fa fa-sign-out-alt" style="font-size: 22px"></i>
+                            <span class="nav-title-mobile">Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -59,6 +124,16 @@
     <script src="{% static 'popper/popper.min.js' %}"></script>
     <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'font-awesome/js/all.js' %}"></script>
+
+    {% block script %}{% endblock %}
+
+    <!-- My Script -->
+    <!-- Initialize Tooltips -->
+    <script>
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 
 </html>

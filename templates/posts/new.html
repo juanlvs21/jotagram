@@ -1,0 +1,48 @@
+<!-- Extending the base template -->
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Create new Post{% endblock %}
+<!-- Content -->
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col-md-6 mt-5">
+        <div class="card">
+            <div class="card-body">
+                <div class="text-center">
+                    <h4 class="mb-4">Post a new Photo</h4>
+                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %} {% for error in form.erros %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for err in error %} {{ err }} {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                    <input type="hidden" name="user" value="{{ user.pk }}">
+                    <input type="hidden" name="profile" value="{{ profile.pk }}">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control {% if form.title.errors %}is-invalid{% endif %}" name="title" id="title" placeholder="Title of your photo" value="{% if form.errors %}{{ form.title.value }}{% endif %}" required>
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %} {{ error }} {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">Choose your photo:</label>
+                        <input type="file" class="form-control input-file {% if form.photo.errors %}is-invalid{% endif %}" name="photo" id="photo" placeholder="Photo" value="{% if form.errors %}{{ form.photo.value }}{% endif %}" required>
+                        <div class="invalid-feedback">
+                            {% for error in form.photo.errors %} {{ error }} {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Publish!</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
