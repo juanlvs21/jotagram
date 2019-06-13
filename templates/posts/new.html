@@ -11,7 +11,7 @@
                 <div class="text-center">
                     <h4 class="mb-4">Post a new Photo</h4>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %} {% for error in form.erros %}
                     <div class="alert alert-danger" role="alert">
                         {% for err in error %} {{ err }} {% endfor %}
@@ -37,7 +37,7 @@
                     </div>
 
                     <div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3">Publish!</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Publish</button>
                     </div>
 
                 </form>

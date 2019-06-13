@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
     <!-- My Style -->
     <style>
-        nav {
+        body {
+            background-color: #fbfbfb;
+            overflow-x: hidden;
+        }
+        
+        #navbar {
+            background-color: #fff;
             height: 50px;
             -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
             -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -57,6 +63,11 @@
             margin-right: 15px;
         }
         
+        .avatarRedondo-detail {
+            height: 150px!important;
+            width: 150px!important;
+        }
+        
         .card-header {
             padding: 10px 0px 0px 0px;
         }
@@ -64,6 +75,12 @@
         
         .input-file {
             padding-bottom: 32px;
+        }
+        
+        .post-container {
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            padding: 15px 0px;
         }
         
         @media (max-width: 991px) {
@@ -79,9 +96,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="navbar">
         <div class="container">
-            <a href="{% url 'home' %}">
+            <a href="{% url 'posts:home' %}">
                 <img src="{% static 'img/logo.png' %}" alt="Okamigram" height="20px">
                 <h5 class="nav-title-mobile">Jotagram</h5>
             </a>
@@ -91,27 +108,27 @@
             <div class="collapse navbar-collapse" id="navbarNav" style="padding-left:20px;">
                 <ul class="navbar-nav text-black ml-auto">
                     <li class="nav-item padding5550">
-                        <a href="{% url 'update_profile' %}" data-toggle="tooltip" data-placement="bottom" title="Perfil">
-                            {% if profile.picture %}
-                                <div class="avatarRedondo avatarRedondo-nav " style="background-image:url('{{ profile.picture.url }}')"></div>
-                            {% endif %}
+                        {% if request.user %}
+                        <a href="{% url 'users:detail' request.user.username %}" data-toggle="tooltip" data-placement="bottom" title="Perfil">
+                            <div class="avatarRedondo avatarRedondo-nav " style="background-image:url('{{ request.user.profile.picture.url }}')"></div>
                             <span class="nav-title-mobile">Perfil</span>
                         </a>
+                        {% endif %}
                     </li>
                     <li class="nav-item padding5550">
-                        <a href="{% url 'home' %}" data-toggle="tooltip" data-placement="bottom" title="Home">
+                        <a href="{% url 'posts:home' %}" data-toggle="tooltip" data-placement="bottom" title="Home">
                             <i class="fa fa-home" style="font-size: 22px"></i>
                             <span class="nav-title-mobile">Home</span>
                         </a>
                     </li>
                     <li class="nav-item padding5550">
-                        <a href="{% url 'create_post' %}" data-toggle="tooltip" data-placement="bottom" title="Add Post">
+                        <a href="{% url 'posts:create_post' %}" data-toggle="tooltip" data-placement="bottom" title="Add Post">
                             <i class="fa fa-plus" style="font-size: 22px"></i>
                             <span class="nav-title-mobile">Add Post</span>
                         </a>
                     </li>
                     <li class="nav-item padding5550">
-                        <a href="{% url 'logout' %}" data-toggle="tooltip" data-placement="bottom" title="Logout">
+                        <a href="{% url 'users:logout' %}" data-toggle="tooltip" data-placement="bottom" title="Logout">
                             <i class="fa fa-sign-out-alt" style="font-size: 22px"></i>
                             <span class="nav-title-mobile">Logout</span>
                         </a>

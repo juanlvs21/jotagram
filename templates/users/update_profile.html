@@ -11,7 +11,7 @@
                 <h5>Profile image</h5>
             </div>
             <div class="card-body">
-                <form action="{% url 'update_picture' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'users:update_picture' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="media">
                         <div class="avatarRedondo-container">
@@ -45,7 +45,7 @@
                 <div class="text-center">
                     <h5 class="ml-4">@{{ user.username }} | {{ user.get_full_name }}</h5>
                 </div>
-                <form action="{% url 'update_profile' %}" method="POST">
+                <form action="{% url 'users:update_profile' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="website">Website</label>
@@ -76,14 +76,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-<!-- Script -->
-{% block script %}
-<!-- <script>
-    let content = document.getElementById('row-content')
-    let height = window.innerHeight
-
-    content.style.height = `${height-(height*0.1)}px`
-</script> -->
 {% endblock %}

@@ -1,0 +1,26 @@
+<div class="col-sm-12 col-md-7 post-container">
+    <div class="media pl-3 pb-1">
+        <a href="{% url 'users:detail' post.user.username %}">
+            <div class="avatarRedondo avatarRedondo-post " style="background-image:url('{{ post.profile.picture.url }}')"></div>
+        </a>
+        <div class="media-body">
+            <p style="margin-top:5px">
+                <a href="{% url 'users:detail' post.user.username %}" style="color:#000">{{post.user.get_full_name}}</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- <a href="{% url 'posts:detail_post' post.pk %}"> -->
+    <img src="{{ post.photo.url }}" style="width: 100%" alt="{{ post.title }}">
+    <!-- </a> -->
+
+    <p class="mt-1 ml-2">
+        <a href="" style="color:#000; font-size:20px">
+            <i class="far fa-heart"></i>
+        </a> 30 likes
+    </p>
+
+    <p class="ml-2 mt-0 mb-2">
+        <b>{{ post.title }}</b> - <small>{{ post.created }}</small>
+    </p>
+</div>

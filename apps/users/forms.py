@@ -45,15 +45,8 @@ class SignupForm(forms.Form):
         data.pop('password_confirmation')
 
         user = User.objects.create_user(**data) # **data sirve para enviar todos los atributos del diccionario
-        profile = Profile(user=user)
+        profile = Profile(user=user,picture="users/pictures/perfil.png")
         profile.save()
-
-class ProfileForm(forms.Form):
-    """Profile information form."""
-    # Controller type update
-    website = forms.URLField(max_length=200, required=False)
-    biography = forms.CharField(max_length=500, required=False)
-    phone_number = forms.CharField(max_length=20, required=False)
 
 class PictureForm(forms.Form):
     """Pircture form."""

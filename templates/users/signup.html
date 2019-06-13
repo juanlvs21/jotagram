@@ -7,7 +7,7 @@
 <!-- Content -->
 {% block content %}
 <div>
-    <form action="{% url 'signup' %}" method="POST">
+    <form action="{% url 'users:signup' %}" method="POST">
         {% csrf_token %}
         <div class="row">
             <div class="col">
@@ -74,7 +74,7 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </div>
         <div class="text-center mt-3">
-            <a href="{% url 'login' %}">Do you already have an account? Log in</a>
+            <a href="{% url 'users:login' %}">Do you already have an account? Log in</a>
         </div>
 
         {% if error %}

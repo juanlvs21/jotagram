@@ -1,0 +1,60 @@
+<!-- Extending the base template -->
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}@{{ user.username }} - Detail Profile{% endblock %}
+<!-- Content -->
+{% block content %}
+<!-- <div class="row justify-content-md-center d-flex align-items-center" id="row-content"> -->
+<div class="mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-ms-4 d-flex justify-content-md-center">
+                    <div class="avatarRedondo avatarRedondo-detail" style="background-image:url('{{ user.profile.picture.url }}')"></div>
+                </div>
+                <div class="col-sm-8" style="padding: 0px 50px">
+                    <h2 style="font-weight: 100;">
+                        {{ user.username}}
+                        <!-- if user == request.user -->
+                        {% if user == request.user %}
+                        <a href="{% url 'users:update_profile' %}" class="ml-5 btn btn-sm btn-outline-info">
+                            Edit profile
+                        </a>
+                        <!-- Else -->
+                        {% else %}
+                        <a href="" class="ml-5 btn btn-sm btn-outline-primary">Fallow</a>
+                        <!-- EndIf -->
+                        {% endif %}
+                    </h2>
+                    <div class="row mt-2" style="font-size: 1.2em">
+                        <div class="col-sm-4">
+                            <b>{{ user.profile.posts_count }}785</b> posts
+                        </div>
+                        <div class="col-sm-4">
+                            <b>{{ user.profile.followers }}785</b> followers
+                        </div>
+                        <div class="col-sm-4">
+                            <b>{{ user.profile.following }}785</b> following
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-12 container text-center">
+                            <p> {{ user.profile.biography }} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                {% for post in posts%}
+                <div class="col-sm-4 d-flex justify-content-center align-items-center" style="padding:5px">
+                    <a href="{% url 'posts:detail_post' post.pk %}" class="border">
+                        <img src="{{ post.photo.url}}" alt="{{ post.itle }}" class="img-fluid">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
